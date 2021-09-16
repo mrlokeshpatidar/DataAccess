@@ -20,6 +20,13 @@ namespace BasicWebApp
 
         public IConfiguration Configuration { get; }
 
+
+        public static string DefaultDBServer { get; set; }
+        public static string DefaultDBPort { get; set; }
+        public static string DefaultDBName { get; set; }
+        public static string DefaultDBUser { get; set; }
+        public static string DefaultDBPassword { get; set; }
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
@@ -32,6 +39,12 @@ namespace BasicWebApp
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            DefaultDBServer = Configuration["ConnectionStrings:DefaultDBServer"];
+            DefaultDBPort = Configuration["ConnectionStrings:DefaultDBPort"];
+            DefaultDBName = Configuration["ConnectionStrings:DefaultDBName"];
+            DefaultDBUser = Configuration["ConnectionStrings:DefaultDBUser"];
+            DefaultDBPassword = Configuration["ConnectionStrings:DefaultDBPassword"];
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
